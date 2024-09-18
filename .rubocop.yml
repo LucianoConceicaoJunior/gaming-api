@@ -1,0 +1,80 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+require:
+  - rubocop-rails
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+  - ./rubocop/custom_cops.rb
+
+AllCops:
+  TargetRubyVersion:
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'package.json'
+    - 'yarn.lock'
+    - 'Procfile.dev'
+    - 'bin/*'
+    - 'package-lock.json'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/Documentation:
+  Enabled: false
+
+# Customize rules
+Layout/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 35
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 70
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/requests/**/*'
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+  EnforcedShorthandSyntax: always
+  SupportedStyles:
+    - ruby19
+    - hash_rockets
+
+CustomCops/EnforceNamedParameters:
+  Enabled: true
+  Exclude:
+    - "db/migrate/**/*"
