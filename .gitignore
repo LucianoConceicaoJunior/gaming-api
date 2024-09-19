@@ -33,3 +33,5 @@
 /config/master.key
 
 .idea/*
+.byebug_history
+five_aliens_backend.iml
