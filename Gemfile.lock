@@ -71,8 +71,11 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
+    api_guard (0.6.0)
+      jwt (~> 2.2)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -100,6 +103,8 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.7.2)
+    jwt (2.9.0)
+      base64
     language_server-protocol (3.17.0.3)
     logger (1.6.1)
     loofah (2.22.0)
@@ -150,7 +155,7 @@ GEM
       pry (>= 0.13, < 0.15)
     psych (5.1.2)
       stringio
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.7)
@@ -226,8 +231,6 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.32.3)
       parser (>= 3.3.1.0)
-    rubocop-capybara (2.21.0)
-      rubocop (~> 1.41)
     rubocop-factory_bot (2.26.1)
       rubocop (~> 1.61)
     rubocop-minitest (0.36.0)
@@ -275,6 +278,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  api_guard
+  bcrypt (~> 3.1.7)
   bootsnap
   brakeman
   debug
@@ -284,7 +289,6 @@ DEPENDENCIES
   rails (~> 7.2.1)
   rspec-rails (~> 7.0.0)
   rubocop
-  rubocop-capybara
   rubocop-factory_bot
   rubocop-rails
   rubocop-rails-omakase
