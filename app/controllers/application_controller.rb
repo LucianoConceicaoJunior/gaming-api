@@ -6,13 +6,13 @@ class ApplicationController < ActionController::API
     kind = request.url.downcase.match(/management|gaming/).to_s
     case kind
     when Api::Constants::Type::MANAGEMENT
-      :authenticate
+      authenticate_with_api_key
     else
       raise ActionController::UnknownFormat
     end
   end
 
-  def authenticate
+  def authenticate_with_api_key
     authenticate_or_request_with_http_token do |token, options|
       @organization = Organization.find_by(api_key: token)
     end

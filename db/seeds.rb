@@ -1,4 +1,13 @@
 # frozen_string_literal: true
 
-organization = Organization.first_or_create! name: '5Aliens'
-project = Project.first_or_create! name: 'Hero', organization:
+organization = Organization.where(name: '5Aliens').first_or_create!
+project = Project.where(name: 'Hero', organization:).first_or_create!
+
+if Rails.env.development?
+  5.times do
+    organization = Organization.where(name: Faker::Company.name).first_or_create!
+    3.times do
+      project = Project.where(name: Faker::App.name, organization:).first_or_create!
+    end
+  end
+end
