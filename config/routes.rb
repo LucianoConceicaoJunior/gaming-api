@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   namespace :api do
     get 'up' => 'rails/health#show', as: :rails_health_check
     namespace :management do
-      resource :organization, as: :organization do
-        resources :projects, only: [ :index ]
+           resource :organization, as: :organization do
+        resources :projects, only: [ :index ] do
+          resources :leaderboards, only: [ :index ]
+        end
       end
     end
     namespace :gaming do
