@@ -10,15 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_21_201802) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_22_190459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "leaderboard_rows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "score", null: false
+    t.integer "day", null: false
+    t.integer "week", null: false
+    t.integer "month", null: false
+    t.integer "year", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_leaderboard_rows_on_user_id"
+  end
+
   create_table "leaderboards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.integer "kind", default: 0, null: false
-    t.integer "sort", default: 0, null: false
+    t.integer "period_type", default: 0, null: false
+    t.integer "sort_type", default: 0, null: false
+    t.integer "row_type", default: 0, null: false
     t.uuid "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,6 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_21_201802) do
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
+  add_foreign_key "leaderboard_rows", "users"
   add_foreign_key "leaderboards", "projects"
   add_foreign_key "projects", "organizations"
   add_foreign_key "users", "organizations"
