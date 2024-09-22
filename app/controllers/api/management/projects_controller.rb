@@ -3,6 +3,6 @@
 class Api::Management::ProjectsController < ApplicationController
   def index
     @projects = Project.where(organization: @organization)
-    render status: 200, json: @projects, only: [ :id, :name ]
+    render status: :ok, json: @projects, only: [ :id, :name ]
   end
 end
