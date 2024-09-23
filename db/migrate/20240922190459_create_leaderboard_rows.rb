@@ -9,7 +9,7 @@ class CreateLeaderboardRows < ActiveRecord::Migration[7.2]
       t.integer :month, null: false
       t.integer :year, null: false
       t.references :user, null: false, foreign_key: true, type: :uuid
-
+      t.references :leaderboard, null: false, foreign_key: true, type: :uuid
       t.timestamps
     end
   end

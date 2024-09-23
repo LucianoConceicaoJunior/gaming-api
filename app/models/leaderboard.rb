@@ -9,5 +9,4 @@ class Leaderboard < ApplicationRecord
   validates :period_type, presence: true
   validates :sort_type, presence: true
   validates :row_type, presence: true
-  validates :project_id, presence: true
 end

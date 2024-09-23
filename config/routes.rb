@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         delete 'sign_out', controller: 'users/authentication', action: :destroy
         post 'refresh_access_token', controller: 'users/tokens', action: :create
       end
+      post 'insert_leaderboard_row', controller: :leaderboard_rows, action: :create
     end
   end
 end

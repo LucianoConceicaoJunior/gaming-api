@@ -6,5 +6,4 @@ class User < ApplicationRecord
   has_many :refresh_tokens, dependent: :delete_all
   has_many :blacklisted_tokens, dependent: :delete_all
   has_secure_password
-  validates :organization_id, presence: true
 end

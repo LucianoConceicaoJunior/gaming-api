@@ -24,6 +24,12 @@ AllCops:
     - 'vendor/**/*'
     - '.git/**/*'
 
+Rails:
+  Enabled: true
+
+Style/MethodDefParentheses:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: true
 
