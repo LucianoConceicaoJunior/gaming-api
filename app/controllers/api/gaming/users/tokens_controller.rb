@@ -26,10 +26,10 @@ module Api::Gaming::Users
         if @old_refresh_token
           @project = @old_refresh_token.project
         else
-          render status: :unauthorized, json: { message: 'Invalid refresh token' }
+          render status: :unauthorized, json: { message: Api::Constants::Messages::INVALID_REFRESH_TOKEN }
         end
       else
-        render status: :unauthorized, json: { message: 'Missing refresh token' }
+        render status: :unauthorized, json: { message: Api::Constants::Messages::MISSING_REFRESH_TOKEN }
       end
     end
 

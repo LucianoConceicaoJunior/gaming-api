@@ -31,8 +31,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_23_125119) do
     t.integer "month", null: false
     t.integer "year", null: false
     t.uuid "user_id", null: false
+    t.uuid "leaderboard_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["leaderboard_id"], name: "index_leaderboard_rows_on_leaderboard_id"
     t.index ["user_id"], name: "index_leaderboard_rows_on_user_id"
   end
 
@@ -84,6 +86,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_23_125119) do
   end
 
   add_foreign_key "blacklisted_tokens", "users"
+  add_foreign_key "leaderboard_rows", "leaderboards"
   add_foreign_key "leaderboard_rows", "users"
   add_foreign_key "leaderboards", "projects"
   add_foreign_key "projects", "organizations"

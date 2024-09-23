@@ -3,10 +3,12 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action do
-    kind = request.url.downcase.match(/management|gaming/).to_s
+    kind = request.url.downcase.match(Api::Constants::Regex::TYPE_REGEX).to_s
     case kind
     when Api::Constants::Type::MANAGEMENT
       authenticate_with_api_key
+    when Api::Constants::Type::GAMING
+      authenticate_and_set_user
     else
       raise ActionController::UnknownFormat
     end
