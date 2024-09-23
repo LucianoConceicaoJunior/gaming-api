@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_22_190459) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_23_125119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "blacklisted_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "token", null: false
+    t.uuid "user_id", null: false
+    t.datetime "expire_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blacklisted_tokens_on_user_id"
+  end
 
   create_table "leaderboard_rows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "score", null: false
@@ -53,6 +62,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_190459) do
     t.index ["organization_id"], name: "index_projects_on_organization_id"
   end
 
+  create_table "refresh_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "token", null: false
+    t.uuid "user_id", null: false
+    t.datetime "expire_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "project_id"
+    t.index ["project_id"], name: "index_refresh_tokens_on_project_id"
+    t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest"
@@ -62,8 +83,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_190459) do
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
+  add_foreign_key "blacklisted_tokens", "users"
   add_foreign_key "leaderboard_rows", "users"
   add_foreign_key "leaderboards", "projects"
   add_foreign_key "projects", "organizations"
+  add_foreign_key "refresh_tokens", "projects"
+  add_foreign_key "refresh_tokens", "users"
   add_foreign_key "users", "organizations"
 end

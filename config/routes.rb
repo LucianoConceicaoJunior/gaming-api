@@ -8,17 +8,18 @@ Rails.application.routes.draw do
   namespace :api do
     get 'up' => 'rails/health#show', as: :rails_health_check
     namespace :management do
-           resource :organization, as: :organization do
-        resources :projects, only: [ :index ] do
-          resources :leaderboards, only: [ :index ]
-        end
-      end
+       resource :organization, as: :organization do
+         resources :projects, only: [ :index ] do
+           resources :leaderboards, only: [ :index ]
+         end
+       end
     end
     namespace :gaming do
-      api_guard_routes for: :users
+      api_guard_scope 'users' do
+        post 'sign_in', controller: 'users/authentication', action: :create
+        delete 'sign_out', controller: 'users/authentication', action: :destroy
+        post 'refresh_access_token', controller: 'users/tokens', action: :create
+      end
     end
   end
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
