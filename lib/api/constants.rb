@@ -13,6 +13,7 @@ module Api
     module Messages
       AUTHENTICATION_FAILED = 'Authentication failed'
       USER_SIGNED_OUT = 'User signed out'
+      RECORD_NOT_FOUND = 'not found'
       PROJECT_NOT_FOUND = 'Project not found'
       LEADERBOARD_NOT_FOUND = 'Leaderboard not found'
       COULD_NOT_CREATE_USER = 'Could not create user'
