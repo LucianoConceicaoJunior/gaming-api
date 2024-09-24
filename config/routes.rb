@@ -21,6 +21,8 @@ Rails.application.routes.draw do
         post 'refresh_access_token', controller: 'users/tokens', action: :create
       end
       post 'insert_leaderboard_row', controller: :leaderboard_rows, action: :create
+      get 'get_leaderboard_rank', controller: :leaderboard_rows, action: :get_leaderboard_rank
+      get 'get_user_rank', controller: :leaderboard_rows, action: :get_user_rank
     end
   end
 end
