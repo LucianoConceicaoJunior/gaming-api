@@ -7,6 +7,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'capistrano'
 gem 'capistrano-bundler'
+gem 'capistrano-linked-files'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
