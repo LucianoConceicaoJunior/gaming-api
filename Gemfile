@@ -5,17 +5,18 @@ source 'https://rubygems.org'
 gem 'api_guard'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-linked-files'
-gem 'capistrano-rails'
-gem 'capistrano-rvm'
-gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
 gem 'faker'
 gem 'pg', '~> 1.1'
-gem 'puma', '>= 5.0'
+gem 'puma', '~> 6.0.0', '< 7'
 gem 'rails', '~> 7.2.1'
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
+
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano3-puma', '6.0.0.beta.1'
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-rvm',     require: false
+end
 
 group :development, :test do
   gem 'brakeman', require: false
