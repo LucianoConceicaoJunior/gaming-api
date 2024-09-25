@@ -35,3 +35,6 @@
 .idea/*
 .byebug_history
 five_aliens_backend.iml
+/config/credentials/production.key
+
+/config/credentials/development.key
