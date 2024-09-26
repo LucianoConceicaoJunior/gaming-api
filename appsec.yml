@@ -12,4 +12,4 @@ mode: 775
 hooks:
 AfterInstall:
   - location: scripts/dependencies_install.sh
-runas: ubuntu
+runas: ubuntu 
