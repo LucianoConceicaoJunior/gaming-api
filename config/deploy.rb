@@ -3,47 +3,29 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.19.1'
 
-set :application, 'five_aliens_api'
+set :server_address, '98.83.55.126'
+server fetch(:server_address), port: 22, user: 'ubuntu', roles: [ :web, :app, :db ], primary: true
+
+set :application, 'fivealiensapi'
 set :repo_url, 'git@bitbucket.org:5aliens/five_aliens_backend_api.git'
+
 set :user, 'ubuntu'
-
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
-# Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/#{fetch(:application)}"
-
-set :pty, true
-set :use_sudo, true
-append :linked_files, "config/credentials/#{fetch(:stage)}.key", 'config/database.yml'
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor', 'storage'
-
-set :keep_releases, 1
+set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}/#{fetch(:stage)}"
 set :ssh_options, {
   forward_agent: true,
   auth_methods: %w[publickey],
   keys: %w[/home/luciano/.ssh/luciano_ec2_keys.pem]
 }
 
-set :puma_workers, 2 # check your CPU specs
-set :puma_rackup, -> { File.join(current_path, 'config.ru') }
-set :puma_state, "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
-set :puma_default_control_app, "unix://#{shared_path}/tmp/sockets/pumactl.sock"
-set :puma_access_log, "#{shared_path}/log/puma_access.log"
-set :puma_error_log, "#{shared_path}/log/puma_error.log"
-set :puma_conf, "#{release_path}/current/config/puma.rb"
-set :puma_control_app, false
-set :puma_systemctl_user, :system
-set :puma_service_unit_type, 'simple' # or notify
-set :puma_enable_socket_service, true # mendatory in our case
-
-# nginx
-set :nginx_config_name, fetch(:application)
-set :nginx_server_name, fetch(:application)
-set :nginx_use_ssl, false # will be handled by certbot
+append :linked_files, 'config/database.yml', "config/credentials/#{fetch(:stage)}.key"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 set :assets_roles, []
+set :keep_releases, 1
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+
+# Default deploy_to directory is /var/www/my_app_name
+# set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

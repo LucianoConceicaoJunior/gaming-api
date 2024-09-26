@@ -12,10 +12,10 @@ gem 'rails', '~> 7.2.1'
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
 
 group :development do
-  gem 'capistrano', require: false
-  gem 'capistrano3-puma', '6.0.0.beta.1', require: false
+  gem 'capistrano', '~> 3.11'
   gem 'capistrano-linked-files', require: false
-  gem 'capistrano-rails',   require: false
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rvm',     require: false
 end
 
