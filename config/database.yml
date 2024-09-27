@@ -81,7 +81,7 @@ test:
 production:
   <<: *default
   database: five_aliens_backend_production
-  username: <%= Rails.application.credentials.aws.rds.user %>
-  password: <%= Rails.application.credentials.aws.rds.password %>
-  host: <%= Rails.application.credentials.aws.rds.host %>
-  port: <%= Rails.application.credentials.aws.rds.port %>
+  username: <%= ENV["RDS_USERNAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
+  host: <%= ENV["RDS_HOST"] %>
+  port: <%= ENV["RDS_PORT"] %>
