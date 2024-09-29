@@ -24,6 +24,10 @@ development:
   <<: *default
   database: five_aliens_backend_development
 
+staging:
+  <<: *default
+  database: five_aliens_backend_staging
+
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
