@@ -6,7 +6,7 @@ gem 'api_guard'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'faker'
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.6'
 gem 'puma', '~> 6.0.0', '< 7'
 gem 'rails', '~> 7.2.1'
 gem 'sidekiq'
