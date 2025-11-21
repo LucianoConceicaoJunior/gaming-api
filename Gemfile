@@ -8,7 +8,7 @@ gem 'bootsnap', require: false
 gem 'faker'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0.0', '< 7'
-gem 'rails', '~> 7.2.1'
+gem 'rails', '~> 8.1.1'
 gem 'sidekiq'
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
 
