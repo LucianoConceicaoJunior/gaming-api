@@ -16,7 +16,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
   gem 'pry-byebug'
-  gem 'rspec-rails', '~> 7.0.0'
+  gem 'rspec-rails', '~> 8.0.2'
   gem 'rubocop'
   gem 'rubocop-factory_bot'
   gem 'rubocop-rails'
